@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { listProducto } from '../servivce/Home'
+import { listProducto } from '../servivce/Producto'
 
 const Producto = () => {
   const [productos, setProductos] = useState(null)
