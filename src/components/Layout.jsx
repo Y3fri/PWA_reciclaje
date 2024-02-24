@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
+
 export default function Layout(props) {
   const [isReadyForInstall, setIsReadyForInstall] = React.useState(false);
 
@@ -38,25 +39,27 @@ export default function Layout(props) {
 
   return (
     <div className="App">
-      <header>
+
+      <header className="headerLayout">
         <h1> PWA</h1>
         {isReadyForInstall && (
-          <button onClick={downloadApp}> Descargasdasda </button>
+          <button className="buttonLayout" onClick={downloadApp}> Descargar APP</button>
         )}
       </header>
 
       <nav>
-        <ul>
-          <li>
-            <Link to="/">Inicio</Link>
+        <ul className="ulLayout">
+          <li className="liLayout">
+            <Link className="aLayout" to="/">Inicio</Link>
           </li>
-          <li>
-            <Link to="/acerca">Acerca</Link>
+          <li className="liLayout">
+            <Link className="aLayout" to="/productos">Productos</Link>
           </li>
-          <li>
-            <Link to="/galeria">Galería</Link>
+          <li className="liLayout">
+            <Link className="aLayout" to="/acerca">Acerca</Link>
           </li>
-        </ul>
+
+        </ul>      
       </nav>
 
       {props.children}
