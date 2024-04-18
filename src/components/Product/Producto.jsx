@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { listProducto } from '../servivce/Producto'
+import { listProducto } from '../../service/Producto'
 import './Producto.css';
 
 
@@ -9,13 +9,20 @@ const isImageFormat = (url) => {
   return imageFormats.includes(extension);
 };
 
+
 const Producto = () => {
   const [productos, setProductos] = useState(null)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
-    listProducto(setProductos)
-  }, [])
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+      listProducto(setProductos);
+    }
+  }, []);
   return (
     <>
+     {isLoggedIn && (
       <main className="main-producto">
         <h1 className="title">Listado de productos: </h1>
         <div className="contenedor-productos">
@@ -38,6 +45,10 @@ const Producto = () => {
 
         </div>
       </main >
+    )}
+    <main>
+      holaa
+    </main>
     </>
   );
 

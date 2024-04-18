@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 
 export default function Layout(props) {
   const [isReadyForInstall, setIsReadyForInstall] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     window.addEventListener("beforeinstallprompt", (event) => {
@@ -15,6 +17,13 @@ export default function Layout(props) {
       // Remove the 'hidden' class from the install button container.
       setIsReadyForInstall(true);
     });
+
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
   }, []);
 
   async function downloadApp() {
@@ -36,6 +45,13 @@ export default function Layout(props) {
     // Hide the install button.
     setIsReadyForInstall(false);
   }
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+    
+    navigate("/login");
+  };
 
   return (
     <div className="App">
@@ -45,18 +61,20 @@ export default function Layout(props) {
         {isReadyForInstall && (
           <button className="buttonLayout" onClick={downloadApp}> Descargar APP</button>
         )}
+        
+        {isLoggedIn && <button onClick={handleLogout}>Cerrar Sesión</button>} 
       </header>
 
       <nav>
         <ul className="ulLayout">
           <li className="liLayout">
-            <Link className="aLayout" to="/">Inicio</Link>
+            <Link className="aLayout" to="../">Inicio</Link>
           </li>
           <li className="liLayout">
-            <Link className="aLayout" to="/productos">Productos</Link>
+            <Link className="aLayout" to="../productos">Productos</Link>
           </li>
           <li className="liLayout">
-            <Link className="aLayout" to="/acerca">Acerca</Link>
+            <Link className="aLayout" to="../acerca">Acerca</Link>
           </li>
 
         </ul>      
