@@ -9,7 +9,7 @@ const LoginUsu = () => {
   const handleLogin = async () => {
     try {
       await authenticateUserAd(credentials);       
-      navigate("/productos");
+      navigate("/CRUDproductos");
     } catch (error) {
       console.error('Error de autenticación:', error.message);
     }
