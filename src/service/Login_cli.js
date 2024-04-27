@@ -24,7 +24,7 @@ const authenticateUser = async (credentials) => {
 const createCliente = async (sso_cliente) => {
   try {
     const response = await axios.post(process.env.REACT_APP_API_URL + "/sso_cliente", sso_cliente);
-    console.log(sso_cliente)
+    
     return response.data;
   } catch (error) {
     throw new Error("Error al crear el cliente: " + error.message);

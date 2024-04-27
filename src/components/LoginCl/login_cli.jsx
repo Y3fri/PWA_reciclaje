@@ -9,13 +9,16 @@ const LoginCli = () => {
   const handleLogin = async () => {
     try {
       await authenticateUser(credentials);       
-      navigate("/productos");
+      navigate("/Inicio");
     } catch (error) {
       console.error('Error de autenticación:', error.message);
-    }
-
-
+    }  
   };
+
+  const handleRegister = () => {
+    navigate("../Registro");
+  };
+
   return (
     <div className="login-container">
     <label htmlFor="cli_nickname">Usuario:</label>
@@ -37,6 +40,8 @@ const LoginCli = () => {
     />
 
     <button onClick={handleLogin} className="login-button">Iniciar Sesión</button>
+    <button onClick={handleRegister} className="login-button">Registrar</button>
+    
   </div>
   );
 };

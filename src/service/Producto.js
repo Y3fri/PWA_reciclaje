@@ -1,4 +1,5 @@
 import axios from 'axios';
+import JwtAdm from '../utils/jwtAd';
 
 
 const listProducto = async (state) => {    
@@ -12,6 +13,7 @@ const listProducto = async (state) => {
 
 const listProductoTodo = async (state) => {    
   try {
+    JwtAdm();
     const peticion = await axios.get(process.env.REACT_APP_API_URL + "/productoTodo");
     state(peticion.data);
   } catch (error) {
@@ -22,6 +24,7 @@ const listProductoTodo = async (state) => {
 
 const postProducto = async (data) => {
   try {
+    JwtAdm();
     const response = await axios.post(`${process.env.REACT_APP_API_URL}/producto`, data);
     return response.data; 
   } catch (error) {
@@ -29,4 +32,16 @@ const postProducto = async (data) => {
   }
 };
 
-export { listProducto, listProductoTodo, postProducto };
+const updateProducto = async (productId, data) => {
+  try {
+    JwtAdm();
+    const response = await axios.put(`${process.env.REACT_APP_API_URL}/producto/${productId}`, data);
+    
+    return response.data; 
+  } catch (error) {
+    throw new Error("Error al realizar la solicitud PUT: " + error.message);
+  }
+};
+
+
+export { listProducto, listProductoTodo, postProducto, updateProducto };

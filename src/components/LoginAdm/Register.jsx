@@ -1,72 +1,67 @@
-// CRUDProducto.js
+// CRUDusuario.js
 import React, { useEffect, useState } from 'react';
-import { listProductoTodo } from '../../service/Producto';
-import './ProductoPost.css';
+import { listTodo } from '../../service/Login_usu';
+import './Register.css';
 import Modal from './Modal';
 
-const isImageFormat = (url) => {
-    const imageFormats = ['jpg', 'jpeg', 'png', 'gif'];
-    const extension = url.split('.').pop().toLowerCase();
-    return imageFormats.includes(extension);
-};
 
-const CRUDProducto = () => {
-    const [productos, setProductos] = useState(null);
+const CRUDUsuario = () => {
+    const [usuarios, setUsuarios] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const [productsPerPage] = useState(5);
-    const [selectedProductId, setSelectedProductId] = useState(null);
+    const [usuariosPerPage] = useState(5);
+    const [selectedUsuarioId, setSelectedUsuarioId] = useState(null);
 
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
             setIsLoggedIn(true);
-            listProductoTodo(setProductos);
+            listTodo(setUsuarios);
         }
     }, []);
 
     const [showModal, setShowModal] = useState(false);
 
-    const openModal = (productId) => {
+    const openModal = (usuarioId) => {
         setShowModal(true);
-        setSelectedProductId(productId);
+        setSelectedUsuarioId(usuarioId);        
     };
 
     const closeModal = () => {
         setShowModal(false);
     };
-    const updateProductList = async () => {
-        await listProductoTodo(setProductos);
+    const updateusuarioList = async () => {
+        await listTodo(setUsuarios);
     };
 
-    // Filtrar productos por nombre
-    const filteredProducts = productos && productos.filter(producto => {
-        return producto.pro_nombre.toLowerCase().includes(searchTerm.toLowerCase());
+    // Filtrar Usuario por nombre
+    const filteredusuarios = usuarios && usuarios.filter(usuario => {
+        return usuario.usu_nombres.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
     // Paginación
-    const indexOfLastProduct = currentPage * productsPerPage;
-    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const currentProducts = filteredProducts && filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+    const indexOfLastusuario = currentPage * usuariosPerPage;
+    const indexOfFirstusuario = indexOfLastusuario - usuariosPerPage;
+    const currentusuarios = filteredusuarios && filteredusuarios.slice(indexOfFirstusuario, indexOfLastusuario);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    const pageNumbers = filteredProducts ?
-        Array.from({ length: Math.ceil(filteredProducts.length / productsPerPage) }, (_, i) => i + 1) :
+    const pageNumbers = filteredusuarios ?
+        Array.from({ length: Math.ceil(filteredusuarios.length / usuariosPerPage) }, (_, i) => i + 1) :
         [];
-    const pages = filteredProducts ?
+    const pages = filteredusuarios ?
         Array.from({ length: Math.min(5, pageNumbers.length) }, (_, i) => i + Math.max(1, Math.min(currentPage - 2, pageNumbers.length - 4))) :
         [];
 
     return (
         <>
             {isLoggedIn && (
-                <main className="main-producto">
-                    <h1 className="title">Listado de productos: </h1>
-                    <div className="contenedor-productos">
-                        <div className='header-product'>
+                <main className="main-usuario">
+                    <h1 className="title">Listado de usuarios: </h1>
+                    <div className="contenedor-usuarios">
+                        <div className='header-usuario'>
                             <input
                                 type="text"
                                 value={searchTerm}
@@ -75,38 +70,30 @@ const CRUDProducto = () => {
                                 className="input-search"
                             />
 
-                            <button onClick={() => openModal(null)} className="product-button">Crear Nuevo Producto</button>
-                            {showModal && <Modal closeModal={closeModal} updateProductList={updateProductList} productId={selectedProductId} productos={productos} />}
+                            <button onClick={() => openModal(null)} className="usuario-button">Crear Nuevo usuario</button>
+                            {showModal && <Modal closeModal={closeModal} updateusuarioList={updateusuarioList} usuarioId={selectedUsuarioId} usuarios={usuarios} />}
                         </div>
 
-                        {currentProducts ? (
+                        {currentusuarios ? (
                             <>
-                                <table className='tablaProducto'>
+                                <table className='tablaUsuario'>
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
-                                            <th>Foto</th>
-                                            <th>Puntos</th>
-                                            <th>Disponibles</th>
+                                            <th>Correo</th>
+                                            <th>Documento</th>
                                             <th>Estado</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {currentProducts.map(producto => (
-                                            <tr key={producto.pro_id}>
-                                                <td>{producto.pro_nombre}</td>
-                                                <td className="foto-cell">
-                                                    {producto.pro_foto && isImageFormat(producto.pro_foto) ? (
-                                                        <img src={producto.pro_foto} alt="" style={{ maxWidth: '80px', maxHeight: '80px' }} />
-                                                    ) : (
-                                                        <img src={`${process.env.PUBLIC_URL}/images/Sin_imagen_disponible.jpg`} alt="Imagen predeterminada" style={{ maxWidth: '50px', maxHeight: '50px' }} />
-                                                    )}
-                                                </td>
-                                                <td>{producto.pro_puntos}</td>
-                                                <td>{producto.pro_cantidad}</td>
+                                        {currentusuarios.map(usuario => (
+                                            <tr key={usuario.usu_id}>
+                                                <td>{usuario.usu_nombres}</td>
+                                                <td>{usuario.usu_correo}</td>
+                                                <td>{usuario.usu_documento}</td>
                                                 <td>
-                                                    {producto.nombre_estado === 'Activo' ? (
+                                                    {usuario.nombre_estado === 'Activo' ? (
                                                         <button className="button-circle-green">
                                                             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -124,11 +111,12 @@ const CRUDProducto = () => {
                                                     )}
                                                 </td>
                                                 <td>
-                                                    <button className="button-edit" onClick={() => openModal(producto.pro_id)}>Editar</button>
+                                                    <button className="button-edit" onClick={() => openModal(usuario.usu_id)}>Editar</button>
 
                                                 </td>
                                             </tr>
                                         ))}
+
                                     </tbody>
                                 </table>
                                 {/* Paginación */}
@@ -146,7 +134,7 @@ const CRUDProducto = () => {
                                     </li>
                                 </ul>
                             </>
-                        ) : ('No hay productos')}
+                        ) : ('No hay usuarios')}
                     </div>
 
                 </main>
@@ -155,4 +143,4 @@ const CRUDProducto = () => {
     );
 };
 
-export default CRUDProducto;
+export default CRUDUsuario;

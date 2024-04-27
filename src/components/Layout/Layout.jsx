@@ -2,19 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-
 export default function Layout(props) {
-  const [isReadyForInstall, setIsReadyForInstall] = React.useState(false);
+  const [isReadyForInstall, setIsReadyForInstall] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     window.addEventListener("beforeinstallprompt", (event) => {
-      // Prevent the mini-infobar from appearing on mobile.
       event.preventDefault();
-      console.log("👍", "beforeinstallprompt", event);
-      // Stash the event so it can be triggered later.
+      console.log("beforeinstallprompt event triggered");
       window.deferredPrompt = event;
-      // Remove the 'hidden' class from the install button container.
       setIsReadyForInstall(true);
     });
 
@@ -24,62 +20,77 @@ export default function Layout(props) {
     } else {
       setIsLoggedIn(false);
     }
+
+    return () => {
+      window.removeEventListener("beforeinstallprompt", () => { });
+    };
   }, []);
 
   async function downloadApp() {
-    console.log("👍", "butInstall-clicked");
+    console.log("downloadApp button clicked");
     const promptEvent = window.deferredPrompt;
     if (!promptEvent) {
-      // The deferred prompt isn't available.
-      console.log("oops, no prompt event guardado en window");
+      console.log("Oops, no prompt event stored in window");
       return;
     }
-    // Show the install prompt.
     promptEvent.prompt();
-    // Log the result
     const result = await promptEvent.userChoice;
-    console.log("👍", "userChoice", result);
-    // Reset the deferred prompt variable, since
-    // prompt() can only be called once.
+    console.log("userChoice result:", result);
     window.deferredPrompt = null;
-    // Hide the install button.
     setIsReadyForInstall(false);
   }
+
   const navigate = useNavigate();
+  const handleLogin = () => {
+    navigate("/loginAdm");
+    setIsLoggedIn(true);
+};
+
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
-    
-    navigate("/login");
+    navigate("/loginAdm");
   };
 
   return (
     <div className="App">
-
       <header className="headerLayout">
-        <h1> PWA</h1>
+        <h1>PWA</h1>
         {isReadyForInstall && (
-          <button className="buttonLayout" onClick={downloadApp}> Descargar APP</button>
+          <button className="buttonLayout" onClick={downloadApp}>Descargar APP</button>
         )}
-        
-        {isLoggedIn && <button onClick={handleLogout}>Cerrar Sesión</button>} 
+        {isLoggedIn ? (
+          <button className="loginButton" onClick={handleLogout}>
+            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-user-minus" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2.5" stroke="#00b341" fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M0 0h24v24H0z" stroke="none" fill="none" />
+              <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+              <path d="M6 21v-2a4 4 0 0 1 4 -4h4c.348 0 .686 .045 1.009 .128" />
+              <path d="M16 19h6" />
+            </svg>
+          </button>
+        ) : (
+          <button className="loginButton" onClick={handleLogin}>
+            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-user-plus" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2.5" stroke="#00b341" fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M0 0h24v24H0z" stroke="none" fill="none" />
+              <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+              <path d="M16 19h6" />
+              <path d="M19 16v6" />
+              <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
+            </svg>
+          </button>
+        )}
       </header>
-
       <nav>
         <ul className="ulLayout">
           <li className="liLayout">
-            <Link className="aLayout" to="../">Inicio</Link>
+            <Link className="aLayout" to="../CRUDproductos">Crud Productos</Link>
           </li>
           <li className="liLayout">
-            <Link className="aLayout" to="../productos">Productos</Link>
+            <Link className="aLayout" to="../CRUDusuario">Crud Usuarios</Link>
           </li>
-          <li className="liLayout">
-            <Link className="aLayout" to="../acerca">Acerca</Link>
-          </li>
-
-        </ul>      
+        </ul>
       </nav>
-
       {props.children}
     </div>
   );
