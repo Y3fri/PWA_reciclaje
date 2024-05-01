@@ -1,20 +1,7 @@
-import React from 'react';
-import { Layout, Home, About, Gallery } from "./components";
-import { Routes, Route } from "react-router-dom";
-import { BrowserRouter as Router } from 'react-router-dom';
+import { AppRouter } from './router/AppRouter';
 
 function App() {
-  return (
-    <Router>
-    <Layout>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="galeria" element={<Gallery />} />
-      <Route path="acerca" element={<About />} />
-    </Routes>
-  </Layout>
-  </Router>
-  );
+  return <AppRouter />; 
 }
 
 export default App;

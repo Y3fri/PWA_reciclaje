@@ -1,0 +1,31 @@
+.main_producto {
+    padding: 20rem;    
+}
+
+.title {
+    color: #f7cdcd;
+}
+
+.contenedor-productos{
+    padding-top: 1.5rem;
+}
+.contenedor-productos .ulProducto{    
+    display: flex; 
+    align-items: center;    
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+}
+.contenedor-productos .liProducto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 2rem;
+    padding: 2rem 1.5rem;
+}
+
+.liProducto img{
+    width: 25rem;
+    height: 20rem;
+    padding: 2rem; 
+}
