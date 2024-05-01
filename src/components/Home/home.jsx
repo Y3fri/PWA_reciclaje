@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useState } from "react";
 import './home.css';
-
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+    const navigate = useNavigate();
+    const [isLoggedIn] = useState(!!localStorage.getItem("token")); 
+    const handleRecogida = () => {
+        navigate("../Recogida");
+    };
+
     return (
         <div className="root">
-            <header>
+            <header className='header-conte'>
                 <h1>Materiales Reciclables</h1>
+                {isLoggedIn && (
+                    <button onClick={handleRecogida} className="recodiga-button">Donar Materiales</button>
+                )}  
             </header>
             <main>
                 <section className="container">

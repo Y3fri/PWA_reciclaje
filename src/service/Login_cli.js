@@ -3,8 +3,9 @@ import axios from 'axios';
 const authenticateUser = async (credentials) => {
   try {
     const response = await axios.post(process.env.REACT_APP_API_URL + "/loginCli", credentials);
-    const { token } = response.data;
-    localStorage.setItem('token', token);    
+    const { token, cli_id } = response.data;    
+    localStorage.setItem('token', token); 
+    localStorage.setItem('cli_id', cli_id);    
   } catch (error) {
     if (error.response) {
       console.error('Error de autenticación:', error.response.data.detail);
