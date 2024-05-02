@@ -9,7 +9,7 @@ const LoginCli = () => {
   const handleLogin = async () => {
     try {
       await authenticateUser(credentials);       
-      navigate("/Inicio");
+      navigate("/");
     } catch (error) {
       console.error('Error de autenticación:', error.message);
     }  
