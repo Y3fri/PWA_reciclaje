@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { listProducto } from '../../service/Producto'
 import './Producto.css';
-
+import { Link } from "react-router-dom";
 
 const isImageFormat = (url) => {
   const imageFormats = ['jpg', 'jpeg', 'png', 'gif'];
@@ -23,8 +23,20 @@ const Producto = () => {
   return (
     <>
       {isLoggedIn && (
+
         <main className="main-producto">
+
           <h1 className="title">Listado de productos: </h1>
+          <nav>
+            <ul className="ulLayout">
+              <li className="liLayout">
+                <Link className="aLayout" to="../">Inicio</Link>
+              </li>
+              <li className="liLayout">
+                <Link className="aLayout" to="../productos"> Productos</Link>
+              </li>
+            </ul>
+          </nav>
           <div className="contenedor-productos">
             {productos != null ? (
               <ul className='ulProducto'>
@@ -45,10 +57,7 @@ const Producto = () => {
 
           </div>
         </main >
-      )}
-      <main>
-        holaa
-      </main>
+      )}   
     </>
   );
 
