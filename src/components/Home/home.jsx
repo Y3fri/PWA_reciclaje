@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+
+    
     const navigate = useNavigate();
     const [isLoggedIn] = useState(!!localStorage.getItem("token"));
     const handleRecogida = () => {
@@ -12,9 +14,9 @@ const Home = () => {
 
     return (
 
-        <div className="root">
+        <div className="root-home">
             <header className='header-conte'>
-                <h1>Materiales Reciclables</h1>
+                <h1 className='title-conte'>Materiales Reciclables</h1>
                 {isLoggedIn && (
                     <button onClick={handleRecogida} className="recodiga-button">Donar Materiales</button>
                 )}
@@ -28,8 +30,8 @@ const Home = () => {
                         <Link className="aLayout" to="../productos"> Productos</Link>
                     </li>
                 </ul>
-            </nav>
-            <main>
+            </nav>            
+            <main>            
                 <section className="container">
                     <article className="card">
                         <img className="media" src={`${process.env.PUBLIC_URL}/images/Sin_imagen_disponible.jpg`} alt="Papel y Cartón" />

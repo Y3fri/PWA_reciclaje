@@ -146,7 +146,7 @@ const Recogida = () => {
         try {
             await postRecogida(recogida);
             console.log(recogida);
-            navigate('/Inicio');
+            navigate('/');
         } catch (error) {
             console.error('Error al enviar la recogida:', error);
             console.log('Error al enviar la recogida. Por favor, inténtalo de nuevo más tarde.',error);

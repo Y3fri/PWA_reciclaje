@@ -12,20 +12,23 @@ const isImageFormat = (url) => {
 
 const Producto = () => {
   const [productos, setProductos] = useState(null)
+  const [isLoading, setIsLoading] = useState(true); 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       setIsLoggedIn(true);
-      listProducto(setProductos);
+      listProducto(setProductos).then(() => {
+        setIsLoading(false);
+      });
     }
   }, []);
+
   return (
     <>
       {isLoggedIn && (
-
         <main className="main-producto">
-
           <h1 className="title">Listado de productos: </h1>
           <nav>
             <ul className="ulLayout">
@@ -38,29 +41,33 @@ const Producto = () => {
             </ul>
           </nav>
           <div className="contenedor-productos">
-            {productos != null ? (
-              <ul className='ulProducto'>
-                {productos.map(producto => (
-                  <li className='liProducto' key={producto.pro_id}>
-                    <h2>{producto.pro_nombre}</h2>
-                    {producto.pro_foto && isImageFormat(producto.pro_foto) ? (
-                      <img src={producto.pro_foto} alt="" />
-                    ) : (
-                      <img src={`${process.env.PUBLIC_URL}/images/Sin_imagen_disponible.jpg`} alt="Imagen predeterminada" />
-                    )}
-                    <p>Puntos: {producto.pro_puntos}</p>
-                    <p>Disponibles: {producto.pro_cantidad} </p>
-                  </li>
-                ))}
-              </ul>
-            ) : ('no hay productos')}
-
+            {isLoading ? (
+              <div className="LoadingModal">
+                <div className="LoadingSpinner"></div>
+              </div>
+            ) : (
+              productos != null ? (
+                <ul className='ulProducto'>
+                  {productos.map(producto => (
+                    <li className='liProducto' key={producto.pro_id}>
+                      <h2>{producto.pro_nombre}</h2>
+                      {producto.pro_foto && isImageFormat(producto.pro_foto) ? (
+                        <img src={producto.pro_foto} alt="" />
+                      ) : (
+                        <img src={`${process.env.PUBLIC_URL}/images/Sin_imagen_disponible.jpg`} alt="Imagen predeterminada" />
+                      )}
+                      <p>Puntos: {producto.pro_puntos}</p>
+                      <p>Disponibles: {producto.pro_cantidad} </p>
+                    </li>
+                  ))}
+                </ul>
+              ) : ('No hay productos')
+            )}
           </div>
-        </main >
-      )}   
+        </main>
+      )}
     </>
   );
-
 }
 
-export default Producto
+export default Producto;

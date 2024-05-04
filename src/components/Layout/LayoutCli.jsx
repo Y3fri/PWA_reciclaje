@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './LayoutCli.css'
 
 export default function LayoutCli(props) {
     const [isReadyForInstall, setIsReadyForInstall] = useState(false);
@@ -51,6 +52,7 @@ export default function LayoutCli(props) {
 
         navigate("/login");
     };
+    const cli_puntos = localStorage.getItem('cli_totalpuntos');
 
     return (
         <div className="App">
@@ -83,6 +85,13 @@ export default function LayoutCli(props) {
                 )}
 
             </header>
+            <p className="puntos-acumulados">
+                <span>{cli_puntos}</span>
+                puntos! 🌟
+            </p>
+
+
+
 
             {props.children}
         </div>
