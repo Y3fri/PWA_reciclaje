@@ -1,0 +1,31 @@
+
+
+
+/* FooterCli.css */
+
+.footerLayout {
+    background-color: #333;
+    padding: 2rem 0;
+    text-align: center;
+    color: #fff;
+}
+
+.footerContent {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.socialIcons {
+    margin-top: 1rem;
+}
+
+.socialIcons a {
+    color: #fff;
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.socialIcons a:hover {
+    color: #00b341;
+}

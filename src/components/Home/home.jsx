@@ -1,23 +1,37 @@
 import React, { useState } from "react";
 import './home.css';
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
+
+    
     const navigate = useNavigate();
-    const [isLoggedIn] = useState(!!localStorage.getItem("token")); 
+    const [isLoggedIn] = useState(!!localStorage.getItem("token"));
     const handleRecogida = () => {
         navigate("../Recogida");
     };
 
     return (
-        <div className="root">
+
+        <div className="root-home">
             <header className='header-conte'>
-                <h1>Materiales Reciclables</h1>
+                <h1 className='title-conte'>Materiales Reciclables</h1>
                 {isLoggedIn && (
                     <button onClick={handleRecogida} className="recodiga-button">Donar Materiales</button>
-                )}  
+                )}
             </header>
-            <main>
+            <nav>
+                <ul className="ulLayout">
+                    <li className="liLayout">
+                        <Link className="aLayout" to="../"> Inicio</Link>
+                    </li>
+                    <li className="liLayout">
+                        <Link className="aLayout" to="../productos"> Productos</Link>
+                    </li>
+                </ul>
+            </nav>            
+            <main>            
                 <section className="container">
                     <article className="card">
                         <img className="media" src={`${process.env.PUBLIC_URL}/images/Sin_imagen_disponible.jpg`} alt="Papel y Cartón" />

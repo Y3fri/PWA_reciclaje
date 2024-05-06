@@ -146,15 +146,20 @@ const Recogida = () => {
         try {
             await postRecogida(recogida);
             console.log(recogida);
-            navigate('/Inicio');
+            navigate('/');
         } catch (error) {
             console.error('Error al enviar la recogida:', error);
             console.log('Error al enviar la recogida. Por favor, inténtalo de nuevo más tarde.',error);
         }
     };
 
+
+    const handleHome = () => {
+        navigate("/");
+    };
     return (
         <div className="root">
+             <button onClick={handleHome} className="home-button">Volver</button>
             <h1>Materiales Reciclables</h1>
             <form onSubmit={handleSubmit}>
                 {errorComuna && <p>{errorComuna}</p>}

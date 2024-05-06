@@ -3,9 +3,10 @@ import axios from 'axios';
 const authenticateUser = async (credentials) => {
   try {
     const response = await axios.post(process.env.REACT_APP_API_URL + "/loginCli", credentials);
-    const { token, cli_id } = response.data;    
+    const { token, cli_id, cli_totalpuntos } = response.data;    
     localStorage.setItem('token', token); 
-    localStorage.setItem('cli_id', cli_id);    
+    localStorage.setItem('cli_id', cli_id);
+    localStorage.setItem('cli_totalpuntos', cli_totalpuntos);    
   } catch (error) {
     if (error.response) {
       console.error('Error de autenticación:', error.response.data.detail);
