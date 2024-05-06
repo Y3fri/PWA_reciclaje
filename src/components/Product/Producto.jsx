@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { listProducto } from '../../service/Producto'
+import { useNavigate } from "react-router-dom";
 import './Producto.css';
 import { Link } from "react-router-dom";
 
@@ -12,7 +13,7 @@ const isImageFormat = (url) => {
 
 const Producto = () => {
   const [productos, setProductos] = useState(null)
-  const [isLoading, setIsLoading] = useState(true); 
+  const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -25,11 +26,28 @@ const Producto = () => {
     }
   }, []);
 
+  const cli_puntos = localStorage.getItem('cli_totalpuntos');  
+
+  const navigate = useNavigate();
+  const [isLoggedIn1] = useState(!!localStorage.getItem("token"));
+  const handleRecogida = () => {
+      navigate("../Recogida");
+  };
   return (
     <>
+      <header className='header-conte'>
+        <h1 className='title-conte'>Materiales Reciclables</h1>
+        {isLoggedIn1 && (
+          <button onClick={handleRecogida} className="recodiga-button">Donar Materiales</button>
+        )}
+      </header>
+      <p className="puntos-acumulados">
+                <span>{cli_puntos}</span>
+                puntos! 🌟
+            </p>
       {isLoggedIn && (
         <main className="main-producto">
-          <h1 className="title">Listado de productos: </h1>
+          
           <nav>
             <ul className="ulLayout">
               <li className="liLayout">

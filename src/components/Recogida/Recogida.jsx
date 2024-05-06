@@ -153,8 +153,13 @@ const Recogida = () => {
         }
     };
 
+
+    const handleHome = () => {
+        navigate("/");
+    };
     return (
         <div className="root">
+             <button onClick={handleHome} className="home-button">Volver</button>
             <h1>Materiales Reciclables</h1>
             <form onSubmit={handleSubmit}>
                 {errorComuna && <p>{errorComuna}</p>}

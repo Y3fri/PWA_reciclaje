@@ -1,33 +1,31 @@
 
-.puntos-acumulados {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    font-size: 1rem;
+
+
+/* FooterCli.css */
+
+.footerLayout {
+    background-color: #333;
+    padding: 2rem 0;
+    text-align: center;
+    color: #fff;
+}
+
+.footerContent {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.socialIcons {
+    margin-top: 1rem;
+}
+
+.socialIcons a {
+    color: #fff;
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.socialIcons a:hover {
     color: #00b341;
-    background-color: #f3f3f300;
-    border-radius: 1.25rem; 
-    padding: 1rem 2rem; 
-    animation: fade-in 1s ease-out;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.puntos-acumulados span {
-    font-size: 2.5rem;
-    color: #666; 
-}
-
-
-@keyframes fade-in {
-    0% {
-        opacity: 0;
-        transform: translateY(1rem);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
