@@ -6,11 +6,12 @@
     color: #f7cdcd;
 }
 
-.contenedor-productos {
+.contenedor-productos1 {
     padding-top: 1.5rem;
+    padding-bottom: 8rem;
 }
 
-.contenedor-productos .ulProducto {
+.contenedor-productos1 .ulProducto {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,7 +19,7 @@
     list-style: none;
 }
 
-.contenedor-productos .liProducto {
+.contenedor-productos1 .liProducto {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,34 +34,7 @@
 }
 
 
-nav {
-    background-color: #333;
-    padding: 0.2rem;
-}
 
-.ulLayout {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-.liLayout {
-    float: left;
-    font-size: 1.4rem;
-}
-
-.aLayout {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.aLayout:hover {
-    background-color: #555;
-}
 
 .puntos-acumulados {
     position: fixed;
