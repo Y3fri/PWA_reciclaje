@@ -1,10 +1,21 @@
 html{
   font-size: 62.5%;
+
 }
+
+.root-home {
+  background-image: url('../public/Images/5159873f-bf05-479f-8591-8781346275dc.gif');
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 160vw 100vh;
+}
+
+
 
 *{
   box-sizing: border-box;
-  margin: 0;
+  margin: 0;  
   padding: 0;
 }
 
@@ -20,32 +31,76 @@ body {
 .headerLayout {
   display: flex;
   align-items: center;
+  background-color: #fcf5e0;
   justify-content: space-between;
-  width: 80%;
-  margin: 0 auto;
+  border-bottom: 0.5rem solid #1f481f;
+  width: 100%;
+  padding: 1.2rem 2.2rem;
+
 }
 
-nav .ulLayout {
+
+
+.ulLayout {  
+  background-color: #1f481f;
   list-style-type: none;
-  padding: 0;
+  padding: 1.5rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 }
 
+
+
 .liLayout {
-  margin-right: 1rem;
-  margin-left: 1rem;
+  float: left;
+  font-size: 1.4rem;
+  font-weight: 700;
 }
 
 .aLayout {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 1.5rem;  
   text-decoration: none;
-  font-weight: bold;
+}
+
+.aLayout:hover {
+  background-color: #555;
+}
+
+.iconLink {
+  display: none;
+  
+}
+
+.textLink {
+  display: inline;
+}
+
+@media (max-width: 600px) {
+  .iconLink {
+      display: inline;
+  }
+
+  .textLink {
+      display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .navintro {      
+      position: fixed;
+      bottom: 0;
+      width: 100%;   
+      z-index: 2;  
+  }
 }
 
 .buttonLayout {
-  background-color: lightcoral;
+  background-color: #1f481f;
   color: white;
   border: none;
   border-radius: 5px;
@@ -57,13 +112,13 @@ nav .ulLayout {
 .loginButton {
   cursor: pointer;
   padding: 0.9rem 1.2rem;
-  background-color: #fff;
+  background-color: #1f481f;
   color: #2c3e50;
-  border: 0.3rem solid#00b341; /* Borde verde */
+  border: 0.3rem solid#1f481f; 
   border-radius: 4px;
   font-size: 16px;
 }
 
 .loginButton:hover {
-  background-color: #eaeaea; /* Cambio de color al pasar el cursor */
+  background-color: #214926; 
 }

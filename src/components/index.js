@@ -8,3 +8,4 @@ export { default as LoginUsu} from "./LoginAdm/login_adm";
 export {default as CRUDUsuario} from "./LoginAdm/Register";
 export {default as Home} from "./Home/home";
 export {default as Recogida} from "./Recogida/Recogida"
+export {default as Donar} from "./DonarMaterial/Donar"

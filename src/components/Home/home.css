@@ -1,13 +1,19 @@
-.root-home {
-  margin-top: 1rem;
-  margin-bottom: 2rem;  
+main .mainhome{
+  background: rgba(255, 255, 255, 0.619);   
+  margin: 0rem 2rem; 
+
 }
 
-.container {
+.h2home{
+  color: #1f481f;
+}
+
+.containerhome {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap;  
+  padding-bottom: 4rem;
 }
 
 .header-conte {
@@ -27,6 +33,7 @@
   }
   .title-conte{
     padding-left: 5rem;
+    color: #000;
     padding-right: 5rem;
   }
 }
@@ -46,30 +53,11 @@
   }
 }
 
-.recodiga-button {
-  display: inline-block;
-  padding: 1rem 2rem;
-  background-color: #00b341;
-  color: #ffffff;
-  border: 0.2rem solid #00b341;
-  border-radius: 2rem;
-  font-size: 1.3rem;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-}
-
-.recodiga-button:hover {
-  background-color: #ffffff;
-  color: #00b341;
-}
 
 .card {  
   margin: 5rem; 
   border-radius: 1rem;
-  box-shadow: 0px 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  box-shadow: 1rem 1.25rem 1.5rem rgba(0, 0, 0, 0.675);
   overflow: hidden;
   transition: transform 0.3s ease;  
   max-width: 25%;
@@ -108,9 +96,9 @@
 }
 
 
-.title-conte{
-  padding-left: 5rem;
-  padding-right: 5rem;
+.title-conte{  
+  padding-top: 2rem;
+  color: #1f481f;
 }
 .content {
   padding: 1rem;
@@ -123,5 +111,7 @@
 
 .content p {
   font-size: 1rem;
-  color: #666;
+  color: #000000;
 }
+
+

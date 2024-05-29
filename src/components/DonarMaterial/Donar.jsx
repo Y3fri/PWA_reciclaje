@@ -1,15 +1,25 @@
-import React from "react";
-import './home.css';
-
+import React, { useState } from "react";
+import './Donar.css';
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const Home = () => {
+const Donar = () => {
 
 
+    const navigate = useNavigate();
+    const [isLoggedIn] = useState(!!localStorage.getItem("token"));
+    const handleRecogida = () => {
+        navigate("../Recogida");
+    };
+
+    const handlelogin = () => {
+        navigate("/login");
+    };
 
     return (
 
         <div className="root-home">
+
             <nav className='navintro'>
                 <ul className="ulLayout">
                     <li className="liLayout">
@@ -45,37 +55,25 @@ const Home = () => {
                     </li>
                 </ul>
             </nav>
+            <main className="body">               
+                    {isLoggedIn ? (
+                        <div class="containerDonar">
+                        <p class="title2">¿Listo para reciclar?</p>                        
+                        <button onClick={handleRecogida} className="button1">Empezar</button>
+                    </div>
+                    ) : (
+                        <div className="containerSesion">
+                            <h2 className="title1">¡Inicia Sesión!</h2>
+                            <p className="description">Para acceder a esta función, necesitas iniciar sesión.</p>
+                            <button onClick={handlelogin} className="button">Iniciar Sesión</button>
+                        </div>
 
-            <main >
-                <nav className="mainhome">
-                    <h1 className='title-conte'>Materiales Reciclables</h1>
-                    <section className="containerhome">
-                        <article className="card">
-                            <img className="media" src={`${process.env.PUBLIC_URL}/images/Sin_imagen_disponible.jpg`} alt="Papel y Cartón" />
-                            <div className="content">
-                                <h2 className="h2home">Papel y Cartón</h2>
-                                <p>El papel y el cartón son materiales reciclables que pueden ser reutilizados para hacer nuevos productos.</p>
-                            </div>
-                        </article>
-                        <article className="card">
-                            <img className="media" src={`${process.env.PUBLIC_URL}/images/Sin_imagen_disponible.jpg`} alt="Plástico" />
-                            <div className="content">
-                                <h2 className="h2home">Plástico</h2>
-                                <p>El plástico es un material reciclable que se puede transformar en diversos productos, reduciendo la contaminación.</p>
-                            </div>
-                        </article>
-                        <article className="card">
-                            <img className="media" src={`${process.env.PUBLIC_URL}/images/Sin_imagen_disponible.jpg`} alt="Vidrio" />
-                            <div className="content">
-                                <h2 className="h2home">Vidrio</h2>
-                                <p>El vidrio es un material reciclable que puede ser fundido y reutilizado para fabricar nuevos envases y objetos.</p>
-                            </div>
-                        </article>
-                    </section>
-                </nav>
+                    )}
+                
+
             </main>
         </div>
     );
 };
 
-export default Home;
+export default Donar;
