@@ -2,14 +2,14 @@
     max-width: 50rem;
     margin: auto;
     padding: 2rem;
-    border: 0.2rem solid #ccc;
+    border: 0.2rem solid #cccccc1f;
     border-radius: 0.5rem;
 }
 
 .RegistroClienteTitle {
     margin-bottom: 0.5rem;
     font-size: 4rem;
-    color: #333;
+    color: #1f481f;
 }
 
 .FormRow {
@@ -18,14 +18,14 @@
 
 .FormLabel {
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 1.1rem;
     font-weight: bold;
 }
 
 .FormInput {
     width: 100%;
     padding: 1rem;
-    border: 0.2rem solid #ccc;
+    border: 0.2rem solid #cccccc3e;
     border-radius: 1rem;
     box-sizing: border-box;
 }
@@ -33,7 +33,9 @@
 .SubmitButton {
     background-color: #4CAF50;
     color: white;
-    padding: 2rem 1rem;
+    font-weight: bold;
+    padding: 1rem 1rem;
+    margin-top: 1rem;
     border: none;
     border-radius: 1rem;
     cursor: pointer;
