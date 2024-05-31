@@ -4,26 +4,28 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #f9f9f990;
 }
 
-h1 {
+.titleReciclar {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 20px;    
+    color: #1f481f;
 }
 
-form {
+.recycle-form {
     display: flex;
     flex-direction: column;
 }
 
-label {
-    margin-bottom: 10px;
+.error {
+    color: red;
+    font-size: 14px;
 }
 
-input[type="text"],
-input[type="checkbox"],
-select {
+.select-comuna,
+.checkbox-input,
+.text-input {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -32,9 +34,13 @@ select {
     font-size: 16px;
 }
 
+
+
+
+
 button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #1f481f;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -43,31 +49,11 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
-}
-
-/* Responsiveness */
-@media (max-width: 768px) {
-    .root {
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-
-    input[type="text"],
-    input[type="checkbox"],
-    select {
-        font-size: 14px;
-    }
-
-    button {
-        font-size: 14px;
-    }
+    background-color: #417441;
 }
 
 .home-button {
-    background-color: #00b341; 
+    background-color: #1f481f; 
     border: none; 
     color: white; 
     padding: 10px 20px;
@@ -78,13 +64,134 @@ button:hover {
     margin: 4px 2px; 
     cursor: pointer;
     border-radius: 5px;
-  }
-  
-  .home-button:hover {
+}
+
+.home-button:hover {
     background-color: #45a049;
-  }
-  
-  .home-button:active {
-    background-color: #3e8e41; /* Cambio de color al hacer clic */
-  }
-  
+}
+
+.home-button:active {
+    background-color: #3e8e41;
+}
+
+.map {
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+}
+
+.location-button {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+.submit-button {
+    padding: 10px 20px;
+}
+
+
+.selectCheck {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.checkbox-label {  
+    font-size: 2rem;    
+    font-weight: bold;
+    margin-top: 3rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    padding-left: 5rem; /* Ajustado para la nueva imagen más grande */
+    cursor: pointer;
+}
+.checkbox-label span{
+    background-color: #ccc;
+    padding-left: 2rem;
+}
+
+
+
+.checkbox-input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Estilos específicos para cada tipo de material */
+.checkbox-custom.plastico {
+    background-image: url('../../../public/Images/plastico.jpg');
+}
+
+.checkbox-custom.papel {
+    background-image: url('../../../public/Images/papel.jpg');
+}
+
+.checkbox-custom.carton {
+    background-image: url('../../../public/Images/carton.jpg');
+}
+
+.checkbox-custom.metal {
+    background-image: url('../../../public/Images/metal.png');
+}
+
+.checkbox-custom.vidrio {
+    background-image: url('../../../public/Images/vidrio.jpg');
+}
+
+.checkbox-custom {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 6rem; /* Tamaño aumentado */
+    width: 6rem; /* Tamaño aumentado */
+    background-size: cover;
+    border-radius: 50%; /* Borde redondo */
+    border: 2px solid #ccc; /* Borde circular */
+}
+
+/* Imagen seleccionada */
+.checkbox-input:checked + .checkbox-custom {
+    background-image: url('../../../public/Images/check.png');
+}
+
+
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .root {
+        max-width: 100%;
+        padding: 10px;
+    }
+    
+    .select-comuna,
+    .checkbox-input,
+    .text-input,
+    .location-button,
+    .submit-button {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .select-comuna,
+    .checkbox-input,
+    .text-input,
+    .location-button,
+    .submit-button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .checkbox-label {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .checkbox-label span {
+        margin-bottom: 5px;
+    }
+}
