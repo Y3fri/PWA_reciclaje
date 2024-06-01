@@ -95,7 +95,7 @@ const Producto = () => {
                           <>
                             <h2>{producto.pro_nombre}</h2>
                             {producto.pro_foto && isImageFormat(producto.pro_foto) ? (
-                              <img className='imagenProducto' src={producto.pro_foto} alt={producto.pro_nombre} />
+                              <img className='imagenProducto' src={`${process.env.REACT_APP_API_URL}/images/${producto.pro_nombre}/file`} alt={producto.pro_nombre} />
                             ) : (
                               <img className='imagenProducto' src={`${process.env.PUBLIC_URL}/images/Sin_imagen_disponible.jpg`} alt="Imagen predeterminada" />
                             )}

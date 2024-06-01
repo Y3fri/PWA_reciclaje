@@ -53,14 +53,27 @@ const Modal = ({ closeModal, updateProductList, productId, productos }) => {
         }
     }, [currentProduct]);
 
-
     const handleChange = (e) => {
+        const { name, value } = e.target;
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [name]: value
         });
     };
 
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFormData({
+                    ...formData,
+                    pro_foto: reader.result
+                });
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -84,7 +97,12 @@ const Modal = ({ closeModal, updateProductList, productId, productos }) => {
                 <h2>{productId ? 'Editar producto' : 'Crear nuevo producto'}</h2>
                 <form onSubmit={handleSubmit}>
                     <label className="form-label">Foto:</label>
-                    <input type="text" name="pro_foto" value={formData.pro_foto} onChange={handleChange} className="form-input" />
+                    <input type="file" name="pro_foto" onChange={handleFileChange} className="form-input" />
+                    <div className="image-preview">
+                        {formData.pro_foto && formData.pro_foto.startsWith('data:image/') && (
+                            <img src={formData.pro_foto} alt="Vista previa" className="image-preview" style={{ width: '20rem', height: '10rem', margin: '1rem' }} />
+                        )}
+                    </div>
                     <label className="form-label">Nombre:</label>
                     <input type="text" name="pro_nombre" value={formData.pro_nombre} onChange={handleChange} className="form-input" />
                     <label className="form-label">Puntos:</label>
@@ -93,6 +111,10 @@ const Modal = ({ closeModal, updateProductList, productId, productos }) => {
                     <input type="text" name="pro_cantidad" value={formData.pro_cantidad} onChange={handleChange} className="form-input" />
                     {productId && (
                         <>
+                            <div className="image-preview">
+                                <label className='form-label'>Foto Actual</label><br />
+                                <img className="image-preview" src={`${process.env.REACT_APP_API_URL}/images/${formData.pro_nombre}/file`} alt={formData.pro_nombre} style={{ width: '20rem', height: '10rem', margin: '1rem' }} />
+                            </div>
                             <label className="form-label">Estado:</label>
                             <div className="language">
                                 <span className="en">Activo</span>
