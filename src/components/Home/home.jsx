@@ -51,24 +51,31 @@ const Home = () => {
                     <h1 className='title-conte'>Materiales Reciclables</h1>
                     <section className="containerhome">
                         <article className="card">
-                            <img className="media" src={`${process.env.PUBLIC_URL}/images/Sin_imagen_disponible.jpg`} alt="Papel y Cartón" />
+                            <img className="media" src={`${process.env.PUBLIC_URL}/images/cartonypapel.jpeg`} alt="Papel y Cartón" />
                             <div className="content">
                                 <h2 className="h2home">Papel y Cartón</h2>
-                                <p>El papel y el cartón son materiales reciclables que pueden ser reutilizados para hacer nuevos productos.</p>
+                                <p>Papel blanco, mezclado, usado (no engrasado), periódicos, revistas, cajas de cartón, etc..</p>
                             </div>
                         </article>
                         <article className="card">
-                            <img className="media" src={`${process.env.PUBLIC_URL}/images/Sin_imagen_disponible.jpg`} alt="Plástico" />
+                            <img className="media" src={`${process.env.PUBLIC_URL}/images/platico1.jpeg`} alt="Plástico" />
                             <div className="content">
                                 <h2 className="h2home">Plástico</h2>
-                                <p>El plástico es un material reciclable que se puede transformar en diversos productos, reduciendo la contaminación.</p>
+                                <p>PET (botellas de condimentos o bebidas), PEAD (botellas de productos de aseo, contenedores de detergente) e icopor.</p>
                             </div>
                         </article>
                         <article className="card">
-                            <img className="media" src={`${process.env.PUBLIC_URL}/images/Sin_imagen_disponible.jpg`} alt="Vidrio" />
+                            <img className="media" src={`${process.env.PUBLIC_URL}/images/vidrio1.jpeg`} alt="Vidrio" />
                             <div className="content">
                                 <h2 className="h2home">Vidrio</h2>
-                                <p>El vidrio es un material reciclable que puede ser fundido y reutilizado para fabricar nuevos envases y objetos.</p>
+                                <p>Botellas de vidrio, frascos de vidrios, vidrio de colores.</p>
+                            </div>
+                        </article>
+                        <article className="card">
+                            <img className="media" src={`${process.env.PUBLIC_URL}/images/metal1.jpeg`} alt="Metal" />
+                            <div className="content">
+                                <h2 className="h2home">Metal</h2>
+                                <p>Chatarra, latas, aluminio, CLAUSEN.</p>
                             </div>
                         </article>
                     </section>

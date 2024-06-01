@@ -64,7 +64,7 @@ const CRUDProducto = () => {
         <>
             {isLoggedIn && (
                 <main className="main-producto">
-                    <h1 className="title">Listado de productos: </h1>
+                    <h1 className="title-conte">Listado de productos: </h1>
                     <div className="contenedor-productos">
                         <div className='header-product'>
                             <input
@@ -98,7 +98,7 @@ const CRUDProducto = () => {
                                                 <td>{producto.pro_nombre}</td>
                                                 <td className="foto-cell">
                                                     {producto.pro_foto && isImageFormat(producto.pro_foto) ? (
-                                                        <img src={producto.pro_foto} alt="" style={{ maxWidth: '80px', maxHeight: '80px' }} />
+                                                        <img src={`${process.env.REACT_APP_API_URL}/images/${producto.pro_nombre}/file`} alt="" style={{ maxWidth: '80px', maxHeight: '80px' }} />
                                                     ) : (
                                                         <img src={`${process.env.PUBLIC_URL}/images/Sin_imagen_disponible.jpg`} alt="Imagen predeterminada" style={{ maxWidth: '50px', maxHeight: '50px' }} />
                                                     )}

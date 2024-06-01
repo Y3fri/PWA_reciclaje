@@ -44,14 +44,14 @@
 .button-circle-green {
     border-radius: 30%;
     border: none;
-    background-color: #00cc00;
+    background-color: #1f481f;
     padding: 0.6rem;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .button-circle-green:hover {
-    background-color: #00e600;
+    background-color: #224b22;
 }
 
 .button-circle-red {
@@ -68,7 +68,7 @@
 }
 
 .button-edit {
-    background-color: #4CAF50;
+    background-color: #1f481f;
     border: none;
     color: white;
     padding: 10px 20px;
@@ -82,7 +82,7 @@
 }
 
 .button-edit:hover {
-    background-color: #45a049;
+    background-color: #3b6d3d;
 }
 
 .pagination {
@@ -141,7 +141,7 @@
 
 .usuario-button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #1f481f;
     border: none;
     color: white;
     border-radius: 5px;
@@ -150,5 +150,5 @@
 }
 
 .usuario-button:hover {
-    background-color: #0056b3;
+    background-color:#366d36;
 }

@@ -59,7 +59,7 @@ const CRUDUsuario = () => {
         <>
             {isLoggedIn && (
                 <main className="main-usuario">
-                    <h1 className="title">Listado de usuarios: </h1>
+                    <h1 className="title-conte">Listado de usuarios: </h1>
                     <div className="contenedor-usuarios">
                         <div className='header-usuario'>
                             <input

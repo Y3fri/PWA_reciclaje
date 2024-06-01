@@ -75,7 +75,7 @@
 }
 
 .button-edit {
-    background-color: #4CAF50;
+    background-color: #1f481f;
     border: none;
     color: white;
     padding: 10px 20px;
@@ -89,7 +89,7 @@
 }
 
 .button-edit:hover {
-    background-color: #45a049;
+    background-color: #305b32;
 }
 
 .pagination {
@@ -100,7 +100,7 @@
 }
 
 .page-link {
-    color: #007bff;
+    color: #1f481f;
     background-color: #fff;
     border: 1px solid #dee2e6;
     padding: 6px 12px;
@@ -127,8 +127,8 @@
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #1f481f;
+    border-color: #1f481f;
 }
 
 .page-item.disabled .page-link {
@@ -149,7 +149,7 @@
 
 .product-button{
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #1f481f;
     border: none;
     color: white;
     border-radius: 5px;
@@ -158,5 +158,5 @@
 }
 
 .product-button:hover {
-    background-color: #0056b3;
+    background-color: #377137;
 }
