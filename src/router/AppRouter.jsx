@@ -9,12 +9,12 @@ export const AppRouter = () => {
       <Route path="/login" element={<LoginCli />}/>
       <Route path="/Registro" element={<RegistroCliente />}/>
       <Route path="/loginAdm" element={<LoginUsu />}/>
-      <Route path="/" element={<LayoutCli><Home/></LayoutCli>} />
-      <Route path="/recicla" element={<LayoutCli><Donar/></LayoutCli>} />
+      <Route path="/" element={<LayoutCli><SessionManager/><Home/></LayoutCli>} />
+      <Route path="/recicla" element={<LayoutCli><SessionManager/><Donar/></LayoutCli>} />
       <Route path="/CRUDproductos" element={<Layout><ProductoPost/></Layout>} />
       <Route path="/Recogida" element={<LayoutCli><SessionManager/><Recogida/></LayoutCli>} />
       <Route path="/CRUDusuario" element={<Layout><CRUDUsuario/></Layout>} />
-      <Route path="/productos" element={<LayoutCli><Producto/></LayoutCli>} />          
+      <Route path="/productos" element={<LayoutCli><SessionManager/><Producto/></LayoutCli>} />          
     </Routes>
   );
 };

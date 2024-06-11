@@ -12,13 +12,19 @@ const listCliente_producto = async (state) => {
 };
 
 
-
 const postCliente_producto = async (data) => {
   try {
+    // Asegúrate de que JwtCli configure el token correctamente
     JwtCli();
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/cliente_producto`, data);
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/cliente_producto`, data, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`, // Ajusta si estás usando otra forma de almacenar el token
+        'Content-Type': 'application/json'
+      }
+    });
     return response.data; 
   } catch (error) {
+    console.error("Error al realizar la solicitud POST:", error);
     throw new Error("Error al realizar la solicitud POST: " + error.message);
   }
 };

@@ -6,13 +6,16 @@ import './login.css';
 const LoginCli = () => {
   const [credentials, setCredentials] = useState({ cli_nickname: '', cli_clave: '' });
   const navigate = useNavigate();
-
+  const [isLoading, setIsLoading] = useState(false);
   const handleLogin = async () => {
     try {
+      setIsLoading(true); 
       await authenticateUser(credentials);
       navigate("/");
     } catch (error) {
       console.error('Error de autenticación:', error.message);
+    } finally{
+        setIsLoading(false)
     }
   };
 
@@ -47,6 +50,11 @@ const LoginCli = () => {
           <button onClick={handleRegister} className="login-button">Registrar</button>
         </div>
       </div>
+      {isLoading && (
+                <div className="LoadingModal">
+                    <div className="LoadingSpinner"></div>
+                </div>
+            )}
     </div>
   );
 };
