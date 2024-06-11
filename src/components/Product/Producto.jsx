@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { listProducto } from '../../service/Producto';
+import { getClienteById } from '../../service/Login_cli';
 import { useNavigate } from "react-router-dom";
 import './Producto.css';
 import { Link } from "react-router-dom";
+import ModalPuntos from './Modales/ModalPuntos';
+import ErrorMessage from './Message/Error';
 
 const isImageFormat = (url) => {
   const imageFormats = ['jpg', 'jpeg', 'png', 'gif'];
@@ -15,23 +18,58 @@ const Producto = () => {
   const [productos, setProductos] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [cliente, setCliente] = useState(null);
+  const [isClienteLoading, setIsClienteLoading] = useState(true);
+  const [showErrorMessage, setShowErrorMessage] = useState(false)
+  
+ 
+  const clienteId = localStorage.getItem('cli_id');
+  const handleCloseErrorMessage = () => {
+    setShowErrorMessage(false);
+  };
   useEffect(() => {
     const token = localStorage.getItem('token');
+    
     if (token) {
       setIsLoggedIn(true);
       listProducto(setProductos).then(() => {
         setIsLoading(false);
       });
+      getClienteById(clienteId, setCliente)
+        .then(() => {
+          setIsClienteLoading(false);
+        })
+        .catch(error => {
+          console.error("Error al obtener el cliente:", error);
+          setIsClienteLoading(false);
+        });
     }
   }, []);
+
+  const openModal = (producto) => {
+    if (cli_puntos >= producto.pro_puntos){
+    setSelectedProduct(producto);
+    setShowModal(true);
+    }else{
+      setShowErrorMessage(true);
+    }
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedProduct(null);
+    getClienteById(clienteId, setCliente)
+  };
 
   const handlelogin = () => {
     navigate("/login");
   };
 
-  const cli_puntos = parseInt(localStorage.getItem('cli_totalpuntos'), 10);
-
+  const cli_puntos = cliente ? cliente.cli_totalpuntos : 0;
+  const cli_id = cliente ? cliente.cli_id : null;
+  
   return (
     <>
       <div className='root-home'>
@@ -82,7 +120,7 @@ const Producto = () => {
 
             <h1 className='title-conte'>Productos redimibles</h1>
             <div className="contenedor-productos1">
-              {isLoading ? (
+              {isLoading  || isClienteLoading ? (
                 <div className="LoadingModal">
                   <div className="LoadingSpinner"></div>
                 </div>
@@ -90,7 +128,7 @@ const Producto = () => {
                 productos != null ? (
                   <ul className='ulProducto'>
                     {productos.map(producto => (
-                      <li className='liProducto' key={producto.pro_id}>
+                      <li className='liProducto' key={producto.pro_id} onClick={() => openModal(producto)}>
                         {cli_puntos >= producto.pro_puntos ? (
                           <>
                             <h2>{producto.pro_nombre}</h2>
@@ -128,6 +166,17 @@ const Producto = () => {
           </div>
         )}
       </div>
+      {showErrorMessage && <ErrorMessage onClose={handleCloseErrorMessage} />}
+
+      {showModal && (
+        <ModalPuntos 
+          closeModal={closeModal} 
+          updateProductList={() => listProducto(setProductos)}
+          selectedProduct={selectedProduct}
+          clienteId={cli_id}
+          cli_puntos={cli_puntos}
+        />
+      )}
     </>
   );
 }

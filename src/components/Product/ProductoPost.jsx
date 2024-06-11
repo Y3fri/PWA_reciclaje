@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { listProductoTodo } from '../../service/Producto';
 import './ProductoPost.css';
-import Modal from './Modal';
+import Modal from './Modales/Modal';
 
 const isImageFormat = (url) => {
     const imageFormats = ['jpg', 'jpeg', 'png', 'gif'];

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { listTodo } from '../../service/Login_usu';
 import './Register.css';
-import Modal from './Modal';
+import Modal from './Modales/Modal';
 
 
 const CRUDUsuario = () => {

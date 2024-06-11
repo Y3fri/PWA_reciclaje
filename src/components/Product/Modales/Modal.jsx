@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Modal.css';
-import { postProducto, updateProducto } from '../../service/Producto';
+import { postProducto, updateProducto } from '../../../service/Producto';
 
 const Modal = ({ closeModal, updateProductList, productId, productos }) => {
     const [formData, setFormData] = useState({
