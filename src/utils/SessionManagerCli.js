@@ -1,26 +1,27 @@
 // SessionManager.js
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {deactivateSession} from '../service/Login_usu';
+import { deactivateSessionCli } from '../service/Login_cli';
 
-const SessionManager = () => {
+const SessionManagerCli = () => {
     const navigate = useNavigate();
+    
 
     useEffect(() => {
         const logout = () => {
             console.log('Cerrando sesión...');
             localStorage.removeItem('token');
-            localStorage.removeItem('usu_rol');
+            localStorage.removeItem('cli_id');
             localStorage.removeItem('active');
             localStorage.removeItem('session_created_at');
             localStorage.removeItem('session_expiration_timestamp');
-            navigate('/loginAdm');
+            navigate('/login');
         };
 
-
         
+
         const handleLogout = async () => {
-            const userId = localStorage.getItem('iduser');
+            const userId = localStorage.getItem('cli_id');
             if (!userId) {
                 console.error('No se pudo obtener el ID del usuario desde el almacenamiento local.');
                 return;
@@ -28,8 +29,9 @@ const SessionManager = () => {
     
             try {
                 
-                await deactivateSession(userId);                
-                navigate("/loginAdm");
+                await deactivateSessionCli(userId);
+                
+                navigate("/login");
             } catch (error) {
                 console.error('Error al intentar cerrar sesión:', error.message);
                 
@@ -48,7 +50,7 @@ const SessionManager = () => {
             }
         };
         
-        const interval = setInterval(checkSessionExpiration, 30000);            
+        const interval = setInterval(checkSessionExpiration, 300000);            
         checkSessionExpiration();        
         return () => clearInterval(interval);
     }, [navigate]);
@@ -56,4 +58,4 @@ const SessionManager = () => {
     return null;
 };
 
-export default SessionManager;
+export default SessionManagerCli;

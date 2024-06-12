@@ -7,15 +7,17 @@ const LoginCli = () => {
   const [credentials, setCredentials] = useState({ cli_nickname: '', cli_clave: '' });
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const handleLogin = async () => {
     try {
-      setIsLoading(true); 
+      setIsLoading(true);
+      setErrorMessage('');
       await authenticateUser(credentials);
       navigate("/");
     } catch (error) {
-      console.error('Error de autenticación:', error.message);
-    } finally{
-        setIsLoading(false)
+      setErrorMessage(error.message);
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -45,16 +47,19 @@ const LoginCli = () => {
             onChange={(e) => setCredentials({ ...credentials, cli_clave: e.target.value })}
             className="input-field"
           />
-
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
           <button onClick={handleLogin} className="login-button">Iniciar Sesión</button>
           <button onClick={handleRegister} className="login-button">Registrar</button>
         </div>
       </div>
+
+
+
       {isLoading && (
-                <div className="LoadingModal">
-                    <div className="LoadingSpinner"></div>
-                </div>
-            )}
+        <div className="LoadingModal">
+          <div className="LoadingSpinner"></div>
+        </div>
+      )}
     </div>
   );
 };

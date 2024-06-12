@@ -4,8 +4,14 @@ import JwtAdm from '../utils/jwtAd';
 const authenticateUserAd = async (credentials) => {
   try {
     const response = await axios.post(process.env.REACT_APP_API_URL + "/login", credentials);
-    const { token } = response.data;
-    localStorage.setItem('token', token);    
+    const { token,usu_rol,session } = response.data;
+    const { uses_created_at, uses_expiration_timestamp, uses_active, uses_iduser } = session;     
+    localStorage.setItem('token', token);   
+    localStorage.setItem('usu_rol', usu_rol); 
+    localStorage.setItem('active',uses_active);  
+    localStorage.setItem('iduser',uses_iduser);
+    localStorage.setItem('session_created_at', uses_created_at);
+    localStorage.setItem('session_expiration_timestamp', uses_expiration_timestamp);      
   } catch (error) {
     if (error.response) {
       console.error('Error de autenticación:', error.response.data.detail);
@@ -20,7 +26,20 @@ const authenticateUserAd = async (credentials) => {
   }
 };
 
-
+const deactivateSession = async (userId) => {
+  try {
+    await axios.put(`${process.env.REACT_APP_API_URL}/deactivate-session/${userId}`);        
+    localStorage.removeItem('token');
+    localStorage.removeItem('usu_rol');
+    localStorage.removeItem('iduser');
+    localStorage.removeItem('active');
+    localStorage.removeItem('session_created_at');
+    localStorage.removeItem('session_expiration_timestamp');
+  } catch (error) {       
+      console.error('Error de red:', error.request);
+      throw new Error('Error de red al intentar desactivar la sesión');   
+  }
+};
 
 const listTodo = async (state) => {    
   try {
@@ -66,5 +85,5 @@ const updateUsuario = async (usuarioId, data) => {
 
 
 export {
-  authenticateUserAd, postUsuario, listTodo, updateUsuario, listRol
+  authenticateUserAd, postUsuario, listTodo, updateUsuario, listRol,deactivateSession
 };
