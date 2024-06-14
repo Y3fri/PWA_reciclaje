@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Modal.css';
-import { listRol } from '../../service/Login_usu';
-import { postUsuario, updateUsuario } from '../../service/Login_usu';
+import { listRol } from '../../../service/Login_usu';
+import { postUsuario, updateUsuario } from '../../../service/Login_usu';
 
 const Modal = ({ closeModal, updateusuarioList, usuarioId, usuarios }) => {
     const [formData, setFormData] = useState({

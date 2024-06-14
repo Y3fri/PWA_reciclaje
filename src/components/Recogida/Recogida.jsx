@@ -3,7 +3,7 @@ import './Recogida.css';
 import { postRecogida } from '../../service/Recogida';
 import { listComu } from '../../service/Comunidad';
 import { useNavigate } from 'react-router-dom';
-import SuccessMessage from '../Recogida/confir';
+import SuccessMessage from './Message/confir';
 
 
 const Recogida = () => {
@@ -23,6 +23,7 @@ const Recogida = () => {
             reg_ubicacion_log: 0,
             reg_numero: "",
             reg_direccion: "",
+            reg_barrio_conjunto: "",
             comuna: {
                 com_id: 0,
                 com_nombre: ""
@@ -93,6 +94,7 @@ const Recogida = () => {
                 reg_ubicacion_log: 0,
                 reg_numero: "",
                 reg_direccion: "",
+                reg_barrio_conjunto: "",
                 comuna: {
                     com_id: 0,
                     com_nombre: ""
@@ -110,7 +112,9 @@ const Recogida = () => {
     const [loadingLocation, setLoadingLocation] = useState(false);
     const [mapInstance, setMapInstance] = useState(null);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-    
+    const [isLoading, setIsLoading] = useState(false);
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
 
     const handleCloseSuccessMessage = () => {
         setShowSuccessMessage(false);
@@ -221,6 +225,7 @@ const Recogida = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (formSubmitted) return;
         const { reg_plastico, reg_papel, reg_carton, reg_metal, reg_vidrio, reg_ubicacion_lag, reg_ubicacion_log, reg_numero, reg_direccion } = recogida.recogida;
         const alMenosUnoSeleccionado = reg_plastico || reg_papel || reg_carton || reg_metal || reg_vidrio;
 
@@ -259,13 +264,15 @@ const Recogida = () => {
 
         if (hasError) return;
 
-        try {
+        try {            
+            setIsLoading(true)
             await postRecogida(recogida);
-            console.log(recogida);
             setShowSuccessMessage(true);
-            
+            setFormSubmitted(true);
         } catch (error) {
             console.error('Error al enviar la recogida:', error);
+        } finally{
+            setIsLoading(false);
         }
     };
 
@@ -337,7 +344,18 @@ const Recogida = () => {
                         />
                     </label>
                     <label className="text-label">
-                        <span>Dirección:</span>
+                        <span>Barrio o conjunto:</span>
+                        <input
+                            type="text"
+                            name="reg_barrio_conjunto"
+                            value={recogida.recogida.reg_barrio_conjunto}
+                            onChange={handleChange}
+                            required
+                            className="text-input"
+                        />
+                    </label>
+                    <label className="text-label">
+                        <span>Dirección o Apartamento:</span>
                         <input
                             type="text"
                             name="reg_direccion"
@@ -347,9 +365,15 @@ const Recogida = () => {
                             className="text-input"
                         />
                     </label>
-                    <button type="submit" className="submit-button">Enviar Recogida</button>
+
+                    <button type="submit" className="submit-button" disabled={formSubmitted}>Enviar Recogida</button>
                 </form>
             </div>
+            {isLoading && (
+                <div className="LoadingModal">
+                    <div className="LoadingSpinner"></div>
+                </div>
+            )}
             {showSuccessMessage && <SuccessMessage onClose={handleCloseSuccessMessage} />}
         </div>
     );

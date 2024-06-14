@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './LayoutCli.css';
 import { listEmpresa } from "../../service/Empresa";
+import { deactivateSessionCli } from '../../service/Login_cli';
 
 export default function LayoutCli(props) {
     const [empresas, setEmpresa] = useState(null)
     const [isReadyForInstall, setIsReadyForInstall] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
 
@@ -51,13 +53,24 @@ export default function LayoutCli(props) {
         setIsLoggedIn(true);
     };
 
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        setIsLoggedIn(false);
-
-        navigate("/login");
-    };
-    
+    const handleLogout = async () => {
+        const userId = localStorage.getItem('cli_id');
+        if (!userId) {
+          console.error('No se pudo obtener el ID del usuario desde el almacenamiento local.');
+          return;
+        }
+      
+        try {
+          setIsLoading(true); 
+          await deactivateSessionCli(userId);
+          setIsLoggedIn(false);
+          navigate("/login");
+        } catch (error) {
+          console.error('Error al intentar cerrar sesión:', error.message);    
+        }finally{
+            setIsLoading(false); 
+        }
+      };
 
     return (
         <div className="App">
@@ -120,6 +133,11 @@ export default function LayoutCli(props) {
                     </div>
                 </div>
             </footer>
+            {isLoading && (
+                <div className="LoadingModal">
+                    <div className="LoadingSpinner"></div>
+                </div>
+            )}
         </div>
     );
 }

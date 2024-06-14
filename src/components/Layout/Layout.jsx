@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { deactivateSession } from '../../service/Login_usu';
 
 export default function Layout(props) {
   const [isReadyForInstall, setIsReadyForInstall] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     window.addEventListener("beforeinstallprompt", (event) => {
@@ -46,12 +48,24 @@ export default function Layout(props) {
     setIsLoggedIn(true);
 };
 
+const handleLogout = async () => {
+  const userId = localStorage.getItem('iduser');
+  if (!userId) {
+    console.error('No se pudo obtener el ID del usuario desde el almacenamiento local.');
+    return;
+  }
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
+  try {
+    setIsLoading(true); 
+    await deactivateSession(userId);
     setIsLoggedIn(false);
     navigate("/loginAdm");
-  };
+  } catch (error) {
+    console.error('Error al intentar cerrar sesión:', error.message);    
+  }finally{
+    setIsLoading(false); 
+  }
+};
 
   return (
     <div className="App">
@@ -92,6 +106,11 @@ export default function Layout(props) {
         </ul>
       </nav>
       {props.children}
+      {isLoading && (
+                <div className="LoadingModal">
+                    <div className="LoadingSpinner"></div>
+                </div>
+            )}
     </div>
   );
 }
