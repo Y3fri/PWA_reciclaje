@@ -48,7 +48,7 @@ const SessionManager = () => {
             }
         };
         
-        const interval = setInterval(checkSessionExpiration, 30000);            
+        const interval = setInterval(checkSessionExpiration, 300000);            
         checkSessionExpiration();        
         return () => clearInterval(interval);
     }, [navigate]);

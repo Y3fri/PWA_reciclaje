@@ -7,5 +7,8 @@ export { default as RegistroCliente } from "./LoginCl/createCli";
 export { default as LoginUsu} from "./LoginAdm/login_adm";
 export {default as CRUDUsuario} from "./LoginAdm/Register";
 export {default as Home} from "./Home/home";
-export {default as Recogida} from "./Recogida/Recogida"
-export {default as Donar} from "./DonarMaterial/Donar"
+export {default as Recogida} from "./Recogida/Recogida";
+export {default as Donar} from "./DonarMaterial/Donar";
+export {default as Emailverify } from "./LoginCl/emailverify"
+export {default as ValidCode} from "./LoginCl/valid_code"
+export {default as CambioContra} from "./LoginCl/cambiocontra"

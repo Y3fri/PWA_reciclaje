@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { authenticateUser } from '../../service/Login_cli';
+import { Link } from "react-router-dom";
 import './login.css';
 
 const LoginCli = () => {
@@ -47,9 +48,11 @@ const LoginCli = () => {
             onChange={(e) => setCredentials({ ...credentials, cli_clave: e.target.value })}
             className="input-field"
           />
+          <Link to="/verificaEmail" className="forgot-password-link">Olvidé mi contraseña</Link>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <button onClick={handleLogin} className="login-button">Iniciar Sesión</button>
-          <button onClick={handleRegister} className="login-button">Registrar</button>
+          <button onClick={handleRegister} className="login-button">Registrar</button>          
+          
         </div>
       </div>
 
