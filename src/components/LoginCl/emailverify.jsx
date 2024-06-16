@@ -29,6 +29,7 @@ const Emailverify = () => {
 
   return (
     <div className='root-home'>
+      <div className='center'>
       <div className="forgot-password-container">
         <h2 className="reset-password-title">Restablecer Contraseña</h2>
         <form onSubmit={handleSubmit} className="reset-password-form">
@@ -45,9 +46,6 @@ const Emailverify = () => {
             {isLoading ? 'Enviando...' : 'Enviar Código de Verificación'}
           </button>
         </form>
-        {showSuccessMessage && (
-          <p className="success-message">Código de recuperación de contraseña enviado con éxito</p>
-        )}
         {errorMessage && (
           <p className="error-message">{errorMessage}</p>
         )}
@@ -56,6 +54,7 @@ const Emailverify = () => {
             <div className="LoadingSpinner"></div>
           </div>
         )}
+      </div>
       </div>
     </div>
   );
