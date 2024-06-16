@@ -12,3 +12,6 @@ export {default as Donar} from "./DonarMaterial/Donar";
 export {default as Emailverify } from "./LoginCl/emailverify"
 export {default as ValidCode} from "./LoginCl/valid_code"
 export {default as CambioContra} from "./LoginCl/cambiocontra"
+export {default as EmailverifyUsu } from "./LoginAdm/emailverifyusu"
+export {default as ValidCodeUsu} from "./LoginAdm/valid_codeusu"
+export {default as CambioContraUsu} from "./LoginAdm/cambiocontrausu"

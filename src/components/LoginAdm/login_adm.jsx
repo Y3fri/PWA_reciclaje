@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { authenticateUserAd } from '../../service/Login_usu';
+import { Link } from "react-router-dom";
 import './login_ad.css'
 
 const LoginUsu = () => {
@@ -44,6 +45,7 @@ const LoginUsu = () => {
             onChange={(e) => setCredentials({ ...credentials, usu_clave: e.target.value })}
             className="input-field"
           />
+          <Link to="/verificaEmailUsu" className="forgot-password-link">Olvidé mi contraseña</Link>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <button onClick={handleLogin} className="login-button">Iniciar Sesión</button>
         </div>
