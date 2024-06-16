@@ -44,7 +44,7 @@ const ExpiracontraUsu = () => {
             }
         };
         
-        const interval = setInterval(checkExpiration, 30000);            
+        const interval = setInterval(checkExpiration, 120000);            
         checkExpiration();        
         return () => clearInterval(interval);
     }, [navigate]);
