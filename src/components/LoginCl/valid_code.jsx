@@ -49,7 +49,7 @@ const ValidCodeCli = () => {
               {code.map((digit, index) => (
                 <input
                   key={index}
-                  type="text"
+                  type="number"
                   value={digit}
                   onChange={(e) => handleChange(e.target.value, index)}
                   ref={(el) => (inputs.current[index] = el)}
