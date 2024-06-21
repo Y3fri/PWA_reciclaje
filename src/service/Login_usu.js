@@ -11,7 +11,8 @@ const authenticateUserAd = async (credentials) => {
     localStorage.setItem('active',uses_active);  
     localStorage.setItem('iduser',uses_iduser);
     localStorage.setItem('session_created_at', uses_created_at);
-    localStorage.setItem('session_expiration_timestamp', uses_expiration_timestamp);      
+    localStorage.setItem('session_expiration_timestamp', uses_expiration_timestamp);     
+    return { usu_rol };     
   } catch (error) {
     if (error.response) {
       console.error('Error de autenticación:', error.response.data.detail);
@@ -45,6 +46,16 @@ const listTodo = async (state) => {
   try {
     JwtAdm();
     const peticion = await axios.get(process.env.REACT_APP_API_URL + "/sso_usuario");
+    state(peticion.data);
+  } catch (error) {
+    throw new Error("Error al obtener la lista de usuarios: " + error.message);
+  }
+};
+
+const listbyRol = async (state) => {    
+  try {
+    JwtAdm();
+    const peticion = await axios.get(process.env.REACT_APP_API_URL + "/sso_usuario_rol");
     state(peticion.data);
   } catch (error) {
     throw new Error("Error al obtener la lista de usuarios: " + error.message);
@@ -85,5 +96,5 @@ const updateUsuario = async (usuarioId, data) => {
 
 
 export {
-  authenticateUserAd, postUsuario, listTodo, updateUsuario, listRol,deactivateSession
+  authenticateUserAd, postUsuario, listTodo, updateUsuario, listRol,deactivateSession,listbyRol
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Producto, LoginCli, RegistroCliente, LoginUsu, Layout, ProductoPost, LayoutCli, CRUDUsuario, Home, Recogida, Donar, ValidCode, CambioContra, Emailverify, EmailverifyUsu,ValidCodeUsu, CambioContraUsu } from '../components';
+import { Producto, LoginCli, RegistroCliente, LoginUsu, Layout, ProductoPost, LayoutCli, CRUDUsuario, Home, Recogida, Donar, ValidCode, CambioContra, Emailverify, EmailverifyUsu,ValidCodeUsu, CambioContraUsu,SsoRecogida, SsoRecogidaDetalles } from '../components';
 import { Routes, Route } from "react-router-dom";
 import SessionManagerCli from "../utils/SessionManagerCli";
 import SessionManager from "../utils/SessionManager";
@@ -22,8 +22,10 @@ export const AppRouter = () => {
       <Route path="/recicla" element={<LayoutCli><SessionManagerCli/><Donar/></LayoutCli>} />
       <Route path="/CRUDproductos" element={<Layout><SessionManager/><ProductoPost/></Layout>} />
       <Route path="/Recogida" element={<LayoutCli><SessionManagerCli/><Recogida/></LayoutCli>} />
-      <Route path="/CRUDusuario" element={<Layout><SessionManager/><CRUDUsuario/></Layout>} />
+      <Route path="/CRUDusuario" element={<Layout><SessionManager/><CRUDUsuario/></Layout>} />      
       <Route path="/productos" element={<LayoutCli><SessionManagerCli/><Producto/></LayoutCli>} />          
+      <Route path="/CRUDsso_recogida" element={<Layout><SessionManager/><SsoRecogida/></Layout>} />
+      <Route path="/sso_recogida_details" element={<Layout><SessionManager/><SsoRecogidaDetalles/></Layout>} />
     </Routes>
   );
 };

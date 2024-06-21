@@ -276,6 +276,8 @@ const Recogida = () => {
         }
     };
 
+    console.log(recogida)
+
     const handleHome = () => {
         navigate('/');
     };

@@ -13,8 +13,19 @@ const LoginUsu = () => {
     try {
       setIsLoading(true);
       setErrorMessage('');
-      await authenticateUserAd(credentials);
-      navigate("/CRUDproductos");
+      const response = await authenticateUserAd(credentials);         
+      if (response && response.usu_rol !== undefined) {
+        localStorage.setItem('usu_rol', response.usu_rol);
+        if (response.usu_rol === 1) {
+          navigate("/CRUDproductos");
+        } else if (response.usu_rol === 2) {
+          navigate("/home");
+        } else {
+          setErrorMessage('Unrecognized role.');
+        }
+      } else {
+        setErrorMessage('Invalid login response.');
+      }
     } catch (error) {
       setErrorMessage(error.message);
     } finally {

@@ -54,6 +54,7 @@ const Modal = ({ closeModal, updateusuarioList, usuarioId, usuarios }) => {
                 usu_correo: currentUsuario.usu_correo,
                 usu_documento: currentUsuario.usu_documento,
                 usu_nombres: currentUsuario.usu_nombres,
+                usu_clave:currentUsuario.usu_clave,
                 usu_apellidos: currentUsuario.usu_apellidos,
                 usu_estado: currentUsuario.usu_estado,
                 usu_rol: currentUsuario.usu_rol,

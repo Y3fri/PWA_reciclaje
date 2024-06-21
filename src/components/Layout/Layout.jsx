@@ -103,6 +103,12 @@ const handleLogout = async () => {
           <li className="liLayout">
             <Link className="aLayout" to="../CRUDusuario">Crud Usuarios</Link>
           </li>
+          <li className="liLayout">
+            <Link className="aLayout" to="../CRUDsso_recogida">Recogidas</Link>
+          </li>
+          <li className="liLayout">
+            <Link className="aLayout" to="../sso_recogida_details">Detalles Recogidas</Link>
+          </li>
         </ul>
       </nav>
       {props.children}
