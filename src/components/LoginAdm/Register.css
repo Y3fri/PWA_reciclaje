@@ -1,6 +1,9 @@
 .form-label {
     font-weight: bold;
 }
+.contenedor-usuarios{
+    margin: 0 10%;
+}
 
 .input-search {
     padding: 10px;

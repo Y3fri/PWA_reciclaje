@@ -69,27 +69,44 @@ const ModalRegDeta = ({ closeModal, ssorecogidaId }) => {
 
                 {recogidaData && (
                     <>
-                    <div className='container-details'>
-                        <div className='row1'>
-                            <div className="recogida-data">
-                                <p><strong>Cliente:</strong> {recogidaData.nombre_cliente} {recogidaData.apellido_cliente}</p>
-                                <p><strong>Número:</strong> {recogidaData.numero}</p>
-                            </div>
-                            <div className="recogida-data">
-                                <p><strong>Trabajador:</strong> {recogidaData.nombre_trabajador} {recogidaData.apellido_trabajador}</p>
-                            </div>
-                            <h2>Horario</h2>
-                            <div className="recogida-data">
-                                <p><strong>Fecha:</strong> {recogidaData.sreg_fecha} </p>
-                            </div>
-                            <div className='recogida-data'>
-                                <p><strong>Hora Inicio:</strong> {recogidaData.sreg_hora1} </p>
-                                <p><strong>Hora Fin:</strong> {recogidaData.sreg_hora2} </p>
-                            </div>
-                            <h2>Materiales</h2>
-                            <div className="recogida-materiales">
-                                <p><strong>Plástico:</strong>
-                                    {recogidaData.plastico === true ? (
+                        <div className='container-details'>
+                            <div className='row1'>
+                                <div className="recogida-data">
+                                    <p><strong>Cliente:</strong> {recogidaData.nombre_cliente} {recogidaData.apellido_cliente}</p>
+                                    <p><strong>Número:</strong> {recogidaData.numero}</p>
+                                </div>
+                                <div className="recogida-data">
+                                    <p><strong>Trabajador:</strong> {recogidaData.nombre_trabajador} {recogidaData.apellido_trabajador}</p>
+                                </div>
+                                <h2>Horario</h2>
+                                <div className="recogida-data">
+                                    <p><strong>Fecha:</strong> {recogidaData.sreg_fecha} </p>
+                                </div>
+                                <div className='recogida-data'>
+                                    <p><strong>Hora Inicio:</strong> {recogidaData.sreg_hora1} </p>
+                                    <p><strong>Hora Fin:</strong> {recogidaData.sreg_hora2} </p>
+                                </div>
+                                <h2>Materiales</h2>
+                                <div className="recogida-materiales">
+                                    <p><strong>Plástico:</strong>
+                                        {recogidaData.plastico === true ? (
+                                            <button className="button-circle-green">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M5 12l5 5l10 -10" />
+                                                </svg>
+                                            </button>
+                                        ) : (
+                                            <button className="button-circle-red">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M18 6l-12 12" />
+                                                    <path d="M6 6l12 12" />
+                                                </svg>
+                                            </button>
+                                        )}
+                                    </p>
+                                    <p><strong>Papel:</strong> {recogidaData.papel === true ? (
                                         <button className="button-circle-green">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -105,108 +122,95 @@ const ModalRegDeta = ({ closeModal, ssorecogidaId }) => {
                                             </svg>
                                         </button>
                                     )}
-                                </p>
-                                <p><strong>Papel:</strong> {recogidaData.papel === true ? (
-                                    <button className="button-circle-green">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M5 12l5 5l10 -10" />
-                                        </svg>
-                                    </button>
-                                ) : (
-                                    <button className="button-circle-red">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M18 6l-12 12" />
-                                            <path d="M6 6l12 12" />
-                                        </svg>
-                                    </button>
-                                )}
-                                </p>
-                                <p><strong>Cartón:</strong>{recogidaData.carton === true ? (
-                                    <button className="button-circle-green">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M5 12l5 5l10 -10" />
-                                        </svg>
-                                    </button>
-                                ) : (
-                                    <button className="button-circle-red">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M18 6l-12 12" />
-                                            <path d="M6 6l12 12" />
-                                        </svg>
-                                    </button>
-                                )}
-                                </p>
-                                <p><strong>Metal:</strong> {recogidaData.metal === true ? (
-                                    <button className="button-circle-green">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M5 12l5 5l10 -10" />
-                                        </svg>
-                                    </button>
-                                ) : (
-                                    <button className="button-circle-red">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M18 6l-12 12" />
-                                            <path d="M6 6l12 12" />
-                                        </svg>
-                                    </button>
-                                )}
-                                </p>
-                                <p><strong>Vidrio:</strong> {recogidaData.vidrio === true ? (
-                                    <button className="button-circle-green">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M5 12l5 5l10 -10" />
-                                        </svg>
-                                    </button>
-                                ) : (
-                                    <button className="button-circle-red">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M18 6l-12 12" />
-                                            <path d="M6 6l12 12" />
-                                        </svg>
-                                    </button>
-                                )}
-                                </p>
+                                    </p>
+                                    <p><strong>Cartón:</strong>{recogidaData.carton === true ? (
+                                        <button className="button-circle-green">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M5 12l5 5l10 -10" />
+                                            </svg>
+                                        </button>
+                                    ) : (
+                                        <button className="button-circle-red">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M18 6l-12 12" />
+                                                <path d="M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    )}
+                                    </p>
+                                    <p><strong>Metal:</strong> {recogidaData.metal === true ? (
+                                        <button className="button-circle-green">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M5 12l5 5l10 -10" />
+                                            </svg>
+                                        </button>
+                                    ) : (
+                                        <button className="button-circle-red">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M18 6l-12 12" />
+                                                <path d="M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    )}
+                                    </p>
+                                    <p><strong>Vidrio:</strong> {recogidaData.vidrio === true ? (
+                                        <button className="button-circle-green">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M5 12l5 5l10 -10" />
+                                            </svg>
+                                        </button>
+                                    ) : (
+                                        <button className="button-circle-red">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M18 6l-12 12" />
+                                                <path d="M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    )}
+                                    </p>
 
+                                </div>
+                                <div className='recogida-data'>
+                                    <p><strong>Puntos Ganados:</strong> {recogidaData.sreg_puntos} </p>
+                                    <p><strong>Peso Total:</strong> {recogidaData.sreg_peso} g</p>
+                                </div>
+                                <div className='recogida-data'>
+                                    <p><strong>Entregado:</strong> {recogidaData.nombre_estado === 'Activo' ? (
+                                        <button className="button-circle-green">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M5 12l5 5l10 -10" />
+                                            </svg>
+                                        </button>
+                                    ) : (
+                                        <button className="button-circle-red">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M18 6l-12 12" />
+                                                <path d="M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    )}
+                                    </p>
+                                </div>
                             </div>
-                            <div className='recogida-data'>
-                                <p><strong>Puntos Ganados:</strong> {recogidaData.sreg_puntos} </p>
-                                <p><strong>Peso Total:</strong> {recogidaData.sreg_peso} g</p>
+                            <div className='row2'>
+                                <h2>Ubicación</h2>
+                                <div id="map" ref={mapRef} style={{ width: '100%', height: '320px' }}></div>
+                                <div className="recogida-data">
+                                    <p><strong>Comuna:</strong> {recogidaData.comuna}</p>
+                                </div>
+                                <div className='recogida-data'>
+                                    <p><strong>Dirección o apartamento:</strong> {recogidaData.direccion}</p>
+                                    <p><strong>Barrio o conjunto:</strong> {recogidaData.barrio_conjunto}</p>
+                                </div>
                             </div>
-                            <div className='recogida-data'>
-                                <p><strong>Entregado:</strong> {recogidaData.nombre_estado === 'Activo' ? (
-                                    <button className="button-circle-green">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M5 12l5 5l10 -10" />
-                                        </svg>
-                                    </button>
-                                ) : (
-                                    <button className="button-circle-red">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M18 6l-12 12" />
-                                            <path d="M6 6l12 12" />
-                                        </svg>
-                                    </button>
-                                )}
-                                </p>
-                            </div>
-                        </div>
-                        <div className='row2'>
-                        <h2>Ubicación</h2>
-                        <div id="map" ref={mapRef} style={{ width: '100%', height: '320px' }}></div>
-                        <div className="recogida-data">
-                                        <p><strong>Comuna:</strong> {recogidaData.comuna}</p>
-                                    </div>
-                        </div>
                         </div>
                     </>
                 )}

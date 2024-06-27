@@ -7,6 +7,15 @@
     
   }
 
+  .modal-content-details-fecha {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);    
+    width: 30%;
+    
+  }
+
 .form-row {
     display: flex;
     justify-content: space-between;
@@ -114,4 +123,10 @@
 .row1{
     
     width: 50%;
+}
+
+
+.row1-fecha{
+    
+    width: 100%;
 }

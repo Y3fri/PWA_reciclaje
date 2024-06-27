@@ -1,5 +1,5 @@
 import React from "react";
-import { Producto, LoginCli, RegistroCliente, LoginUsu, Layout, ProductoPost, LayoutCli, CRUDUsuario, Home, Recogida, Donar, ValidCode, CambioContra, Emailverify, EmailverifyUsu,ValidCodeUsu, CambioContraUsu,SsoRecogida, SsoRecogidaDetalles } from '../components';
+import { Producto, LoginCli, RegistroCliente, LoginUsu, Layout, ProductoPost, LayoutCli, CRUDUsuario, Home, Recogida, Donar, ValidCode, CambioContra, Emailverify, EmailverifyUsu,ValidCodeUsu, CambioContraUsu,SsoRecogida, SsoRecogidaDetalles} from '../components';
 import { Routes, Route } from "react-router-dom";
 import SessionManagerCli from "../utils/SessionManagerCli";
 import SessionManager from "../utils/SessionManager";

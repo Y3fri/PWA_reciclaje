@@ -77,7 +77,7 @@ const ModalReg = ({ closeModal, updatessorecogidaList, ssorecogidaId, sso_recogi
             }
         }
     });
-
+      
     const [currentRecogida, setCurrentRecogida] = useState(null);
     const [Rols, setRols] = useState([]);
     const [recogidaData, setRecogidaData] = useState(null);
@@ -120,9 +120,7 @@ const ModalReg = ({ closeModal, updatessorecogidaList, ssorecogidaId, sso_recogi
                 sreg_idtrabajador: currentRecogida.sreg_idtrabajador,
                 sreg_puntos: currentRecogida.sreg_puntos,
                 sreg_peso: currentRecogida.sreg_peso,
-                sreg_fecha: currentRecogida.sreg_fecha,
-                sreg_hora1: currentRecogida.sreg_hora1,
-                sreg_hora2: currentRecogida.sreg_hora2,
+               
                 sreg_asignacion: currentRecogida.sreg_asignacion,
             }));
         }
@@ -171,17 +169,23 @@ const ModalReg = ({ closeModal, updatessorecogidaList, ssorecogidaId, sso_recogi
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault();        
         try {
+            setIsLoading(true)
             if (ssorecogidaId) {
+                
                 await updatesso_recogida(ssorecogidaId, formData);
+                
             } else {
                 console.error("Error al enviar el formulario:");
             }
+            
             updatessorecogidaList();
             closeModal();
         } catch (error) {
             console.error("Error al enviar el formulario:", error.message);
+        }finally{
+            setIsLoading(false);
         }
     };
 
@@ -326,6 +330,7 @@ const ModalReg = ({ closeModal, updatessorecogidaList, ssorecogidaId, sso_recogi
                                                     !formData.sreg_idtrabajador ||
                                                     (Rols && Rols.some(usu => usu.usu_id === formData.sreg_idtrabajador && (usu.usu_nombres === "NULL" || usu.usu_nombres === "")))
                                                 }
+                                                required
                                             />
                                         </div>
                                     </div>
@@ -336,6 +341,7 @@ const ModalReg = ({ closeModal, updatessorecogidaList, ssorecogidaId, sso_recogi
                                         value={formData.sreg_fecha}
                                         onChange={handleChange}
                                         className="form-input"
+                                        required
                                     />
                                     <label className="form-label">Hora Inicio:</label>
                                     <input
@@ -344,6 +350,7 @@ const ModalReg = ({ closeModal, updatessorecogidaList, ssorecogidaId, sso_recogi
                                         value={formData.sreg_hora1}
                                         onChange={handleChange}
                                         className="form-input"
+                                        required
                                     />
                                     <label className="form-label">Hora Fin:</label>
                                     <input
@@ -352,6 +359,7 @@ const ModalReg = ({ closeModal, updatessorecogidaList, ssorecogidaId, sso_recogi
                                         value={formData.sreg_hora2}
                                         onChange={handleChange}
                                         className="form-input"
+                                        required
                                     />
                                     <p className="form-text"> { }</p>
                                     {formData.sreg_asignacion || (
@@ -361,9 +369,14 @@ const ModalReg = ({ closeModal, updatessorecogidaList, ssorecogidaId, sso_recogi
 
                                 <div className='row2'>
                                     <h2>Ubicación</h2>
-                                    <div id="map" ref={mapRef} style={{ width: '100%', height: '400px' }}></div>
+                                    <div id="map" ref={mapRef} style={{ width: '100%', height: '330px' }}></div>
                                     <div className="recogida-data">
                                         <p><strong>Comuna:</strong> {recogidaData.comuna}</p>
+
+                                    </div>
+                                    <div className='recogida-data'>
+                                        <p><strong>Dirección o apartamento:</strong> {recogidaData.direccion}</p>
+                                        <p><strong>Barrio o conjunto:</strong> {recogidaData.barrio_conjunto}</p>
                                     </div>
                                 </div>
                             </div>
@@ -379,6 +392,7 @@ const ModalReg = ({ closeModal, updatessorecogidaList, ssorecogidaId, sso_recogi
                         <div className="LoadingSpinner"></div>
                     </div>
                 )}
+               
             </div>
         </div>
 

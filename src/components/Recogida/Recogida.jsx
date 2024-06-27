@@ -9,6 +9,7 @@ import SuccessMessage from './Message/confir';
 const Recogida = () => {
     const cli_id = localStorage.getItem('cli_id');
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState('');
 
     const initialState = {
         recogida: {
@@ -266,17 +267,18 @@ const Recogida = () => {
 
         try {            
             setIsLoading(true)
+            setErrorMessage('');
             await postRecogida(recogida);
             setShowSuccessMessage(true);
             setFormSubmitted(true);
         } catch (error) {
-            console.error('Error al enviar la recogida:', error);
+            console.error(error)
+            setErrorMessage(error.message);
         } finally{
             setIsLoading(false);
         }
     };
-
-    console.log(recogida)
+    
 
     const handleHome = () => {
         navigate('/');
@@ -370,6 +372,7 @@ const Recogida = () => {
 
                     <button type="submit" className="submit-button" disabled={formSubmitted}>Enviar Recogida</button>
                 </form>
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
             </div>
             {isLoading && (
                 <div className="LoadingModal">

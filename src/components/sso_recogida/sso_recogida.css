@@ -1,5 +1,6 @@
-.contenedor-ssorecogidas {
-    padding: 5rem;
+.contenedor-sso_recogidas {
+        margin: 0 5%;
+    
 }
 
 .input-search {
@@ -155,4 +156,42 @@
 
 .ssorecogida-button:hover {
     background-color: #377137;
+}
+
+
+
+
+
+.contenlist{
+    margin: 0 25%;
+}
+
+.input-search {
+    margin-top: 1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-weight: bold;
+    border-bottom: 1px solid #000000;
+    font-size: 1.5rem;
+}
+
+.ssorecogida-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ssorecogida-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1.4rem;
 }
