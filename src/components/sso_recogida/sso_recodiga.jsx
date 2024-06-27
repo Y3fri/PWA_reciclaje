@@ -12,6 +12,7 @@ const SsoRecogida = () => {
     const [selectedssorecogidaId, setSelectedssorecogidaId] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
+
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
@@ -20,7 +21,7 @@ const SsoRecogida = () => {
         }
     }, []);
 
-    const openModal = (ssorecogidaId) => {        
+    const openModal = (ssorecogidaId) => {
         setSelectedssorecogidaId(ssorecogidaId);
         setShowModal(true);
     };
@@ -37,6 +38,7 @@ const SsoRecogida = () => {
         sso_recogida.nombre_cliente.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+
     const indexOfLastssorecogida = currentPage * ssorecogidasPerPage;
     const indexOfFirstssorecogida = indexOfLastssorecogida - ssorecogidasPerPage;
     const currentssorecogidas = filteredssorecogidas.slice(indexOfFirstssorecogida, indexOfLastssorecogida);
@@ -47,10 +49,13 @@ const SsoRecogida = () => {
         { length: Math.ceil(filteredssorecogidas.length / ssorecogidasPerPage) },
         (_, i) => i + 1
     );
+
     const pages = pageNumbers.slice(
         Math.max(0, currentPage - 3),
         Math.min(pageNumbers.length, currentPage + 2)
     );
+
+
 
     return (
         <>
@@ -78,25 +83,17 @@ const SsoRecogida = () => {
 
                         {currentssorecogidas.length ? (
                             <>
-                                <table className="tablasso_recogida">
-                                    <thead>
-                                        <tr>
-                                            <th>Cliente</th>                                                                                        
-                                            <th>Fecha</th>
-                                            <th>Hora Inicio</th>
-                                            <th>Hora Fin</th>
-                                            <th>Asignación</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                <div className='contenlist'>
+                                    <div className="list-header">
+                                        <div>Cliente</div>
+                                        <div>Asignación</div>
+                                        <div>Acciones</div>
+                                    </div>
+                                    <ul className="ssorecogida-list">
                                         {currentssorecogidas.map(sso_recogida => (
-                                            <tr key={sso_recogida.sreg_id}>
-                                                <td>{sso_recogida.nombre_cliente} {sso_recogida.apellido_cliente}</td>
-                                                <td>{sso_recogida.sreg_fecha}</td>
-                                                <td>{sso_recogida.sreg_hora1}</td>
-                                                <td>{sso_recogida.sreg_hora2}</td>                                                
-                                                <td>
+                                            <li key={sso_recogida.sreg_id} className="ssorecogida-item">
+                                                <div>{sso_recogida.nombre_cliente} {sso_recogida.apellido_cliente}</div>
+                                                <div>
                                                     {sso_recogida.sreg_asignacion === true ? (
                                                         <button className="button-circle-green">
                                                             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check" width="10" height="10" viewBox="0 0 24 24" strokeWidth="3" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -113,28 +110,27 @@ const SsoRecogida = () => {
                                                             </svg>
                                                         </button>
                                                     )}
-                                                </td>
-                                                
-                                                <td>
+                                                </div>
+                                                <div>
                                                     <button className="button-edit" onClick={() => openModal(sso_recogida.sreg_id)}>Editar</button>
-                                                </td>
-                                            </tr>
+                                                </div>
+                                            </li>
                                         ))}
-                                    </tbody>
-                                </table>
-                                <ul className="pagination">
-                                    <li className="page-item">
-                                        <button onClick={() => paginate(1)} className="page-link">&laquo;</button>
-                                    </li>
-                                    {pages.map(page => (
-                                        <li key={page} className={`page-item ${currentPage === page ? 'active' : ''}`}>
-                                            <button onClick={() => paginate(page)} className="page-link">{page}</button>
+                                    </ul>
+                                    <ul className="pagination">
+                                        <li className="page-item">
+                                            <button onClick={() => paginate(1)} className="page-link">&laquo;</button>
                                         </li>
-                                    ))}
-                                    <li className="page-item">
-                                        <button onClick={() => paginate(pageNumbers.length)} className="page-link">&raquo;</button>
-                                    </li>
-                                </ul>
+                                        {pages.map(page => (
+                                            <li key={page} className={`page-item ${currentPage === page ? 'active' : ''}`}>
+                                                <button onClick={() => paginate(page)} className="page-link">{page}</button>
+                                            </li>
+                                        ))}
+                                        <li className="page-item">
+                                            <button onClick={() => paginate(pageNumbers.length)} className="page-link">&raquo;</button>
+                                        </li>
+                                    </ul>
+                                </div>
                             </>
                         ) : (
                             'No hay Recogidas'
